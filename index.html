@@ -1,0 +1,65 @@
+//https://github.com/Jasbir96/Batches/blob/main/FJP-1/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>canvas example</h1>
+    <!-- drawing board-->
+    <canvas></canvas>
+</body>
+
+<!-- html js inject-->
+<script>
+    let canvasboard = document.querySelector("canvas");
+    // default height weight is smaller
+    canvasboard.height = window.innerHeight;
+    canvasboard.width = window.innerWidth;
+
+    // this line gives you tool to draw
+    let tool = canvasboard.getContext("2d");
+     
+     // rectangle build
+     //tool.fillStyle= "green";
+
+     // x, y, width, height
+     //tool.fillRect(0, 0, 200, 200);
+
+     //boundaries draw
+     //tool.strokeStyle= "red";
+     //tool.strokeRect(50, 50, 200, 200);
+     //tool.fillStyle = "blue";
+     //tool.fillRect(40, 40, 100, 100);
+
+     // press on screen
+     let body = document.querySelector("body");
+     let Xi, Yi, Xf, Yf
+     body.addEventListener("mousedown", function (e){
+        //alert("mouse was pressed on the body");
+        //console.log(e);
+        //let xpos = e.clientX;
+        //let ypos = e.clientY;
+        //console.log(xpos, ypos);
+        Xi = e.clientX;
+        Yi = e.clientY;
+
+     })
+
+     body.addEventListener("mouseup", function (e){
+         //console.log(e);
+         //let xpos = e.clientX;
+         //let ypos = e.clientY;
+         //console.log(xpos, ypos);
+         Xf = e.clientX;
+         Yf = e.clientY;
+         let height = Xf - Xi;
+         let width = Yf - Yf;
+         tool.strokeRect(Xi, yi, width, height);
+     })
+
+</script>
+</html>
