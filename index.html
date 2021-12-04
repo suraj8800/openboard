@@ -1,29 +1,37 @@
-//https://github.com/Jasbir96/Batches/blob/main/FJP-1/index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--https://github.com/Jasbir96/Batches/blob/main/FJP-1/index.html-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+
+        .fas {
+            font-size: 2rem;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>canvas example</h1>
+    <!--<h1>canvas example</h1>-->
     <!-- drawing board-->
+    <i class="fas fa-square"></i>
+    <i class="fas fa-grip-lines-vertical"></i>
     <canvas></canvas>
+
 </body>
 
 <!-- html js inject-->
 <script>
-    let canvasboard = document.querySelector("canvas");
-    // default height weight is smaller
-    canvasboard.height = window.innerHeight;
-    canvasboard.width = window.innerWidth;
-
-    // this line gives you tool to draw
-    let tool = canvasboard.getContext("2d");
-     
-     // rectangle build
+    // rectangle build
      //tool.fillStyle= "green";
 
      // x, y, width, height
@@ -36,29 +44,52 @@
      //tool.fillRect(40, 40, 100, 100);
 
      // press on screen
-     let body = document.querySelector("body");
-     let Xi, Yi, Xf, Yf
-     body.addEventListener("mousedown", function (e){
-        //alert("mouse was pressed on the body");
-        //console.log(e);
-        //let xpos = e.clientX;
-        //let ypos = e.clientY;
-        //console.log(xpos, ypos);
-        Xi = e.clientX;
-        Yi = e.clientY;
 
+    let canvasboard = document.querySelector("canvas");
+    let rectTool = document.querySelector(".fa-square");
+    let lineTool = document.querySelector(".fa-grip-lines-vertical");
+    let cTool = "rectTool";
+    // default height weight is smaller
+    canvasboard.height = window.innerHeight;
+    canvasboard.width = window.innerWidth;
+
+    // this line gives you tool to draw
+    let tool = canvasboard.getContext("2d");
+     let body = document.querySelector("body");
+
+     // tool change logic
+     rectTool.addEventListener("click", function(){
+         cTool = "rectTool";
      })
 
+     lineTool.addEventListener("click", function(){
+         cTool = "lineTool";
+     })
+     let iX, iY, fX, fY
+     body.addEventListener("mousedown", function (e){
+        
+        //console.log(e);
+       
+        iX = e.clientX;
+        iY = e.clientY;
+
+     })
      body.addEventListener("mouseup", function (e){
          //console.log(e);
-         //let xpos = e.clientX;
-         //let ypos = e.clientY;
-         //console.log(xpos, ypos);
-         Xf = e.clientX;
-         Yf = e.clientY;
-         let height = Xf - Xi;
-         let width = Yf - Yf;
-         tool.strokeRect(Xi, yi, width, height);
+        
+         fX = e.clientX;
+         fY = e.clientY;
+         let height = fX - iX;
+         let width = fY - iY;
+         if(cTool == "rectTool"){
+             tool.strokeRect(iX, iY, width, height);
+         } else{
+             tool.beginPath();
+             tool.moveTo(iX, iY);
+             tool.lineTo(fX, fY);
+             tool.stroke();
+             console.log("Line tool is pending");
+         }
      })
 
 </script>
