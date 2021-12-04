@@ -17,14 +17,49 @@
             margin-right: 30px;
             margin-left: 30px;
         }
+        .icon-pallet{
+            height: 50px;
+            background-color: rgb(228, 227, 227);
+            width: 800px;
+            margin-left: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .red{
+            background-color: lightpink;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .green{
+            background-color: lightgreen; 
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+
+        }
+        .blue{
+            background-color: lightblue;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!--<h1>canvas example</h1>-->
     <!-- drawing board-->
-    <i class="fas fa-square"></i>
-    <i class="fas fa-grip-lines-vertical"></i>
+    <div class="icon-pallet">
+
+        <i class="fas fa-square"></i>
+        <i class="fas fa-grip-lines-vertical"></i>
+        <div class="red"></div>
+        <div class="green"></div>
+        <div class="blue"></div>
+
+    </div>
     <canvas></canvas>
 
 </body>
@@ -57,12 +92,12 @@
      let iX, iY, fX, fY
      body.addEventListener("mousedown", function (e){
         //console.log(e);
-        iX = e.clientX + boardLeft;
+        iX = e.clientX ;
         iY = e.clientY - boardTop;
      })
      body.addEventListener("mouseup", function (e){
          //console.log(e);
-         fX = e.clientX + boardLeft;
+         fX = e.clientX ;
          fY = e.clientY - boardTop;
          let height = fX - iX;
          let width = fY - iY;
@@ -77,6 +112,18 @@
          }
      })
 
+     let redColor = document.querySelector(".red");
+        let greenColor = document.querySelector(".green");
+        let blueColor = document.querySelector(".blue");
+        redColor.addEventListener("click", function(){
+            tool.strokeStyle="lightpink"; 
+        })
+        greenColor.addEventListener("click", function(){
+            tool.strokeStyle="lightgreen"; 
+        })
+        blueColor.addEventListener("click", function(){
+            tool.strokeStyle="lightblue"; 
+        })
      // rectangle build
      //tool.fillStyle= "green";
 
