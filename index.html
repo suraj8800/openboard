@@ -65,36 +65,76 @@
 </body>
 
 <!-- html js inject-->
-<script>
-
+<!-- all variabels-->
+<script> 
+   
     let canvasboard = document.querySelector("canvas");
     let rectTool = document.querySelector(".fa-square");
     let lineTool = document.querySelector(".fa-grip-lines-vertical");
     let cTool = "rectTool";
-    // default height weight is smaller
-    canvasboard.height = window.innerHeight;
-    canvasboard.width = window.innerWidth;
-
     // this line gives you tool to draw
     let tool = canvasboard.getContext("2d");
     let body = document.querySelector("body");
 
-     // tool change logic
-     rectTool.addEventListener("click", function(){
+    let boardTop = canvasboard.getBoundingClientRect().top;
+     let boardLeft = canvasboard.getBoundingClientRect().left;
+     let iX, iY, fX, fY
+
+            // default height weight is smaller
+    canvasboard.height = window.innerHeight;
+    canvasboard.width = window.innerWidth;
+
+    // rectangle build
+     //tool.fillStyle= "green";
+
+     // x, y, width, height
+     //tool.fillRect(0, 0, 200, 200);
+
+     //boundaries draw
+     //tool.strokeStyle= "red";
+     //tool.strokeRect(50, 50, 200, 200);
+     //tool.fillStyle = "blue";
+     //tool.fillRect(40, 40, 100, 100);
+
+     // press on screen
+
+</script>
+<!-- color chnage and tool change-->
+<script>
+    // tool change logic
+    rectTool.addEventListener("click", function(){
          cTool = "rectTool";
      })
 
      lineTool.addEventListener("click", function(){
          cTool = "lineTool";
      })
-     let boardTop = canvasboard.getBoundingClientRect().top;
-     let boardLeft = canvasboard.getBoundingClientRect().left;
-     let iX, iY, fX, fY
-     body.addEventListener("mousedown", function (e){
+
+     //color change
+        let redColor = document.querySelector(".red");
+        let greenColor = document.querySelector(".green");
+        let blueColor = document.querySelector(".blue");
+
+        redColor.addEventListener("click", function(){
+            tool.strokeStyle="lightpink"; 
+        })
+        greenColor.addEventListener("click", function(){
+            tool.strokeStyle="lightgreen"; 
+        })
+        blueColor.addEventListener("click", function(){
+            tool.strokeStyle="lightblue"; 
+        })
+        console.log(canvasboard.getBoundingClientRect());
+</script>
+<!-- drawing 
+<script>
+    body.addEventListener("mousedown", function (e){
         //console.log(e);
         iX = e.clientX ;
         iY = e.clientY - boardTop;
      })
+    
+   
      body.addEventListener("mouseup", function (e){
          //console.log(e);
          fX = e.clientX ;
@@ -111,32 +151,28 @@
              console.log("Line tool is pending");
          }
      })
+</script> -->
+<script>
+    /*let canvasboard = document.querySelector("canvas");
+    let tool = canvasboard.getContext("2d");
+    let body = document.querySelector("body");
+    canvasboard.height = window.innerHeight;
+    canvasboard.width = window.innerWidth;
+    let boardTop = canvasboard.getBoundingClientRect().top;
+     let boardLeft = canvasboard.getBoundingClientRect().left;
+     let iX, iY, fX, fY*/
 
-     let redColor = document.querySelector(".red");
-        let greenColor = document.querySelector(".green");
-        let blueColor = document.querySelector(".blue");
-        redColor.addEventListener("click", function(){
-            tool.strokeStyle="lightpink"; 
-        })
-        greenColor.addEventListener("click", function(){
-            tool.strokeStyle="lightgreen"; 
-        })
-        blueColor.addEventListener("click", function(){
-            tool.strokeStyle="lightblue"; 
-        })
-     // rectangle build
-     //tool.fillStyle= "green";
+     
 
-     // x, y, width, height
-     //tool.fillRect(0, 0, 200, 200);
-
-     //boundaries draw
-     //tool.strokeStyle= "red";
-     //tool.strokeRect(50, 50, 200, 200);
-     //tool.fillStyle = "blue";
-     //tool.fillRect(40, 40, 100, 100);
-
-     // press on screen
-
+     body.addEventListener("mousemove", function e(){
+        fX = e.clientX - boardLeft;
+        fY = e.clientY - boardTop;
+        tool.beginPath();
+        tool.moveTo(iX, iY);
+        tool.lineTo(fX, fY);
+        tool.stroke();
+        iX = fX;
+        iy = fY;
+    }) 
 </script>
 </html>
